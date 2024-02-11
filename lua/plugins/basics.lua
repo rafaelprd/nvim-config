@@ -17,8 +17,10 @@ return {
     },
   },
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter"
+    'm4xshen/autoclose.nvim',
+    config = function()
+      require("autoclose").setup()
+    end
   },
   {
     -- Add indentation guides even on blank lines
