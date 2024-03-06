@@ -16,7 +16,25 @@ return {
       a = {
         name = "yvytive",
         r = { yvytiveDev.reload, "Refresh" },
-        b = { yvytive.abrirBoard, "Abrir board" }
+        b = {
+          function()
+            yvytive.abrirBoard("AZURE_BACKLOGS")
+          end,
+          "Azure backlogs"
+        },
+        p = {
+          function()
+            yvytive.abrirBoard("AZURE_GIT_PR")
+          end,
+          "Azure git pull requests"
+        },
+        ['/'] = {
+          function()
+            yvytive.abrirBoard("AZURE_BACKLOGS_FIND")
+          end,
+          "Search for Azure workitens"
+        }
+
       }
     }, { prefix = "<leader>" })
   end,
