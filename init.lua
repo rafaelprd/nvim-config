@@ -27,6 +27,7 @@ require('lazy').setup({
   require 'plugins.git',
   require 'plugins.sessions',
   require 'plugins.yvytive',
+  require 'plugins.harpoon',
   -- require 'plugins.debug',
 }, {})
 
