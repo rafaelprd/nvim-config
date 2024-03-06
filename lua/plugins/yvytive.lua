@@ -9,7 +9,7 @@ return {
     yvytive.setup({
       PAT = "",
       baseURL = "",
-      prefix = "[Talentos] - "
+      prefix = ""
     })
     local wk = require('which-key')
     wk.register({
