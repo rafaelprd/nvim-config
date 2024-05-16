@@ -23,11 +23,10 @@ require('lazy').setup({
   require 'plugins.basics',
   require 'plugins.view',
   require 'plugins.themes',
-  -- require 'plugins.autoformat',
+  require 'plugins.autoformat',
   require 'plugins.git',
   require 'plugins.sessions',
   require 'plugins.yvytive',
-  require 'plugins.harpoon',
   -- require 'plugins.debug',
 }, {})
 
@@ -72,7 +71,7 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
-require("keymaps").setup()
+require('keymaps').setup()
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
@@ -116,6 +115,7 @@ local on_attach = function(_, bufnr)
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
+    -- require("conform").format({ bufnr = args.buf })
   end, { desc = 'Format current buffer with LSP' })
 end
 
@@ -153,7 +153,7 @@ local servers = {
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   volar = {
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
   },
   lua_ls = {
     Lua = {
@@ -237,13 +237,13 @@ cmp.setup {
 }
 
 -- Noice
-require("noice").setup({
+require('noice').setup {
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
     override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+      ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+      ['vim.lsp.util.stylize_markdown'] = true,
+      ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
     },
   },
   -- you can enable a preset for easier configuration
@@ -254,4 +254,4 @@ require("noice").setup({
     inc_rename = false,           -- enables an input dialog for inc-rename.nvim
     lsp_doc_border = false,       -- add a border to hover docs and signature help
   },
-})
+}
