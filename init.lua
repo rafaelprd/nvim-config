@@ -23,10 +23,11 @@ require('lazy').setup({
   require 'plugins.basics',
   require 'plugins.view',
   require 'plugins.themes',
-  require 'plugins.autoformat',
+  --require 'plugins.autoformat',
   require 'plugins.git',
   require 'plugins.sessions',
   require 'plugins.yvytive',
+  require 'plugins.oil',
   -- require 'plugins.debug',
 }, {})
 
@@ -150,10 +151,21 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  -- tsserver = {},
+  tsserver = {
+    filetypes = { 'typescript', 'javascript', 'vue', 'json' },
+    init_options = {
+      plugins = {
+        {
+          name = '@vue/typescript-plugin',
+          location = 'C:/Program Files/nodejs',
+          languages = { 'vue' },
+        },
+      },
+    },
+  },
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   volar = {
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+    filetypes = { 'typescript', 'javascript', 'vue', 'json' },
   },
   lua_ls = {
     Lua = {
@@ -184,6 +196,7 @@ mason_lspconfig.setup_handlers {
       on_attach = on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
+      init_options = (servers[server_name] or {}).init_options,
     }
   end,
 }

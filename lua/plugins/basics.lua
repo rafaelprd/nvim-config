@@ -19,8 +19,8 @@ return {
   {
     'm4xshen/autoclose.nvim',
     config = function()
-      require("autoclose").setup()
-    end
+      require('autoclose').setup()
+    end,
   },
   {
     -- Add indentation guides even on blank lines
@@ -46,7 +46,7 @@ return {
       'folke/neodev.nvim',
 
       -- Zenmode
-      'folke/zen-mode.nvim'
+      'folke/zen-mode.nvim',
     },
     config = function()
       -- Switch for controlling whether you want autoformatting.
@@ -90,6 +90,10 @@ return {
           -- Tsserver usually works poorly. Sorry you work with bad languages
           -- You can remove this line if you know what you're doing :)
           if client.name == 'tsserver' then
+            return
+          end
+
+          if client.name == 'volar' then
             return
           end
 
@@ -157,8 +161,8 @@ return {
             },
           },
           file_ignore_patterns = {
-            "node_modules"
-          }
+            'node_modules',
+          },
         },
       }
 
@@ -183,7 +187,7 @@ return {
       vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-    end
+    end,
   },
   {
     -- Highlight, edit, and navigate code
@@ -200,8 +204,7 @@ return {
       vim.defer_fn(function()
         require('nvim-treesitter.configs').setup {
           -- Add languages to be installed here that you want installed for treesitter
-          ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim',
-            'bash' },
+          ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
 
           -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
           auto_install = false,
@@ -218,7 +221,7 @@ return {
             },
           },
           autotag = {
-            enable = true
+            enable = true,
           },
           textobjects = {
             select = {
@@ -266,6 +269,25 @@ return {
           },
         }
       end, 0)
-    end
+    end,
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+    config = function()
+      require('conform').setup {
+        formatters_by_ft = {
+          lua = { 'stylua' },
+          -- Use a sub-list to run only the first available formatter
+          javascript = { { 'prettierd', 'prettier' } },
+          vue = { { 'prettierd', 'prettier' } },
+        },
+        format_on_save = {
+          -- These options will be passed to conform.format()
+          timeout_ms = 1000,
+          lsp_fallback = true,
+        },
+      }
+    end,
   },
 }
