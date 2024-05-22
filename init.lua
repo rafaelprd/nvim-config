@@ -28,6 +28,7 @@ require('lazy').setup({
   require 'plugins.sessions',
   require 'plugins.yvytive',
   require 'plugins.oil',
+  require 'plugins.trouble',
   -- require 'plugins.debug',
 }, {})
 
