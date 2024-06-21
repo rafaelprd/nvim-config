@@ -17,12 +17,6 @@ return {
     },
   },
   {
-    'm4xshen/autoclose.nvim',
-    config = function()
-      require('autoclose').setup()
-    end,
-  },
-  {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
@@ -122,15 +116,6 @@ return {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
   {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'windwp/nvim-ts-autotag',
-    },
-    build = ':TSUpdate',
-  },
-  {
     -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
@@ -187,6 +172,32 @@ return {
       vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+    end,
+  },
+  {
+    'm4xshen/autoclose.nvim',
+    config = function()
+      require('autoclose').setup()
+    end,
+  },
+  {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup {
+        opts = {
+          enable_close = true,           -- Auto close tags
+          enable_rename = true,          -- Auto rename pairs of tags
+          enable_close_on_slash = false, -- Auto close on trailing </
+        },
+        -- Also override individual filetype configs, these take priority.
+        -- Empty by default, useful if one of the "opts" global settings
+        -- doesn't work well in a specific filetype
+        per_filetype = {
+          ['html'] = {
+            enable_close = false,
+          },
+        },
+      }
     end,
   },
   {

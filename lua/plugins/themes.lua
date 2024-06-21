@@ -31,12 +31,11 @@ return {
   {
     'zaldih/themery.nvim',
     config = function()
-      require('themery').setup(
-        {
-          themes = { "onedark", "kanagawa", "everforest", "gruvbox" }, -- Your list of installed colorschemes
-          themeConfigFile = "./lua/settings/theme.lua",
-          livePreview = true,                                    -- Apply theme while browsing. Default to true.
-        })
-    end
-  }
+      require('themery').setup {
+        themes = { 'onedark', 'kanagawa', 'everforest', 'gruvbox', 'kanagawa-lotus' }, -- Your list of installed colorschemes
+        themeConfigFile = './lua/settings/theme.lua',
+        livePreview = true,                                                            -- Apply theme while browsing. Default to true.
+      }
+    end,
+  },
 }
