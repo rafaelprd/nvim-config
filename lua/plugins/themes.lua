@@ -12,18 +12,18 @@ return {
     'neanias/everforest-nvim',
     priority = 1001,
     lazy = false,
-    --config = function()
-    --  vim.cmd.colorscheme 'everforest'
-    --end,
+    config = function()
+      vim.cmd.colorscheme 'everforest'
+    end,
   },
 
   {
     'ellisonleao/gruvbox.nvim',
     priority = 1002,
     lazy = false,
-    config = function()
-      vim.cmd.colorscheme 'gruvbox'
-    end,
+    --config = function()
+    --  vim.cmd.colorscheme 'gruvbox'
+    --end,
   },
 
   { 'rebelot/kanagawa.nvim' },
@@ -32,10 +32,16 @@ return {
     'zaldih/themery.nvim',
     config = function()
       require('themery').setup {
-        themes = { 'onedark', 'kanagawa', 'everforest', 'gruvbox', 'kanagawa-lotus' }, -- Your list of installed colorschemes
+        themes = { 'onedark', 'cyberdream', 'kanagawa', 'everforest', 'gruvbox', 'kanagawa-lotus' }, -- Your list of installed colorschemes
         themeConfigFile = './lua/settings/theme.lua',
-        livePreview = true,                                                            -- Apply theme while browsing. Default to true.
+        livePreview = true,                                                                          -- Apply theme while browsing. Default to true.
       }
     end,
   },
+
+  {
+    'scottmckendry/cyberdream.nvim',
+  },
+
+  { 'xiyaowong/transparent.nvim' },
 }
