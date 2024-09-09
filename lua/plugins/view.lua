@@ -4,7 +4,7 @@ return {
   'ryanoasis/vim-devicons',
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',     opts = {} },
 
   {
     -- Set lualine as statusline
@@ -110,4 +110,18 @@ return {
   --     require('windows').setup()
   --   end,
   -- },
+  { 'petertriho/nvim-scrollbar' },
+  {
+    'toppair/peek.nvim',
+    event = { 'VeryLazy' },
+    build = 'deno task --quiet build:fast',
+    config = function()
+      require('peek').setup()
+      vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+      vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+    end,
+  },
+  {
+    'RRethy/vim-illuminate',
+  },
 }
